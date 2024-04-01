@@ -15,13 +15,17 @@ users_collection = db["users"]
 
 app = Flask(__name__)
 app.secret_key = 'abcdef123456'  # Change this to a random string
-CORS(app)
+#app.config.update(SESSION_COOKIE_SAMESITE="None", SESSION_COOKIE_SECURE=True)
+
+CORS(app, supports_credentials=True)
 
 @app.route('/getUsers',methods=['GET'])
 def getUsers():
     # Perform the database query and directly convert to JSON array
-    users = list(users_collection.find({}, {'_id': 0}))  # Exclude _id field
-    return jsonify(users)
+    user = users_collection.find_one({})  # Exclude _id field
+    session['user_id'] = str(user['_id'])
+    session.modified = True
+    return user["username"]
     
 
 @app.route('/register', methods=['POST'])
@@ -30,6 +34,8 @@ def register():
     username = data['username']
     password = data['password']
     contact = data['contact']
+    email = data['email']
+    address = data['address']
     print("data is",data)
 
     # Check if username already exists
@@ -44,7 +50,9 @@ def register():
     new_user = {
         'username': username,
         'password': hashed_password,
-        'contact' : contact
+        'contact' : contact,
+        'email' :email,
+        'address' : address
                 }
     users_collection.insert_one(new_user)
 
@@ -80,11 +88,11 @@ def send_sms():
 
 
 
-@app.route('/login', methods=['POST'])
+@app.route('/login', methods=['GET'])
 def login():
-    data = request.json
-    username = data['username']
-    password = data['password']
+    #data = request.json
+    username = request.args.get('username')
+    password = request.args.get('password')
 
     # Find the user in the database
     user = users_collection.find_one({'username': username})
@@ -93,6 +101,9 @@ def login():
 
     # Store the user's ID in the session
     session['user_id'] = str(user['_id'])
+    session.modified = True
+
+    print(session)
 
     return jsonify({'message': 'Login successful'}), 200
 
@@ -118,7 +129,11 @@ def profile():
 
     # Return user profile information
     return jsonify({
-        'username': user['username']
+        'username': user['username'],
+        'contact' :user['contact'],
+        'email':user['email'],
+        'address':user['address']
+        
     }), 200
 
 

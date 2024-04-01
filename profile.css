@@ -1,5 +1,6 @@
 body {
-    background: rgb(99, 39, 120)
+    /* background: rgb(99, 39, 120) */
+    background-image: url(https://www.shutterstock.com/image-vector/map-mobile-app-planning-travel-600nw-2281719087.jpg);
 }
 
 .form-control:focus {

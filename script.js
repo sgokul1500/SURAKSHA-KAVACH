@@ -47,16 +47,21 @@ function login() {
     alert("Please enter both username and passworddddd");
   }
 
-  fetch("http://127.0.0.1:5000/login", {
-    method: "POST",
+  fetch("http://127.0.0.1:5000/login?username="+username+"&password="+password, {
+    method: "GET",
     headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      username: username,
-      password: password
+      'Content-Type': 'application/json',
+      'Accept': 'application/json' // Add this header if necessary
+  },
+  credentials: 'include', 
+    // headers: {
+    //   "Content-Type": "application/json",
+    // }
+    // body: JSON.stringify({
+    //   username: username,
+    //   password: password
       
-    }),
+    // }),
   })
     .then((response) => {
      
@@ -69,6 +74,7 @@ function login() {
       
     })
     .catch((error) => {
+      alert("Error ",error)
       console.error("Error:", error);
     });
 
@@ -79,6 +85,8 @@ function verify(){
   var username = document.getElementById("signupname").value;
   var contact = document.getElementById("contact").value;
   var password = document.getElementById("signuppassword").value;
+  var email  = document.getElementById("email").value
+  var address = document.getElementById("address").value
   var otp = document.getElementById("otp").value;
   //Check otp
   if(otp == otpGen){
@@ -98,6 +106,8 @@ function verify(){
           username: username,
           password: password,
           contact: contact,
+          email : email,
+          address :address
         }),
       })
         .then((response) => {
