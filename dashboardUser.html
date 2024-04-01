@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet"  href="dashboardUser.css">
+</head>
+<body>
+    
+    <!DOCTYPE html>
+
+<html>
+
+<head>
+  <title>Safely</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="{% static 'style.css'%}">
+</head>
+<script type="text/javascript">
+
+
+
+  jQuery(document).ready(function ($) {
+    tab = $('.tabs h3 a');
+
+    tab.on('click', function (event) {
+      event.preventDefault();
+      tab.removeClass('active');
+      $(this).addClass('active');
+
+      tab_content = $(this).attr('href');
+      $('div[id$="tab-content"]').removeClass('active');
+      $(tab_content).addClass('active');
+    });
+  });
+
+
+
+
+</script>
+
+<body>
+ 
+
+
+
+  
+  <!DOCTYPE html>
+  
+  <html>
+  
+  <head>
+    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{% static 'style.css'%}">
+  </head>
+  <script type="text/javascript">
+  
+  
+  
+    jQuery(document).ready(function ($) {
+      tab = $('.tabs h3 a');
+  
+      tab.on('click', function (event) {
+        event.preventDefault();
+        tab.removeClass('active');
+        $(this).addClass('active');
+  
+        tab_content = $(this).attr('href');
+        $('div[id$="tab-content"]').removeClass('active');
+        $(tab_content).addClass('active');
+      });
+    });
+  
+  
+  
+  
+  </script>
+  <style type="text/css">
+    .invi {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+  color:#fff;
+      z-index: 1;
+  
+    }
+  
+    .card {
+        color: #fff;
+      cursor: pointer;
+    }
+  
+    .card:hover {
+      background-color: #fff !important;
+    }
+  </style>
+  
+  <body>
+   
+    
+    <!-- <div class="container " style="text-align:center;">
+      
+      <div class="row">
+        <div class="card text-white bg-warning mb-3 mx-auto" style="max-width: 18rem;">
+          <div class="card-body">
+
+            <a href="profile.html">
+            <h4 class="card-title">Profile</h4>
+            
+            <p class="card-text">Know about self</p>
+        </a>
+
+          </div>
+        </div>
+        <div class="card text-white mb-3 mx-auto" style="max-width: 18rem; background-color: #FB4720;">
+          <div class="card-body">
+            <a href="table.html">
+            <h4 class="card-title">Registerd Agency</h4>
+  
+            
+            <p class="card-text">Take a look at saviours!!</p>
+        </a>
+          </div>
+        </div>
+        <div class="card text-white bg-danger mb-3 mx-auto" style="max-width: 18rem;">
+          <div class="card-body">
+            <a href="geolocation.html">
+            <h4 class="card-title">SOS Emergency</h4>
+           
+            <p class="card-text">Send an automatic 100 call and alert registered near ones.</p>
+        </a>
+          </div>
+        </div>
+      </div>
+  
+  
+    </div> -->
+
+    <div class="container">
+      <div class="card">
+        <div class="box">
+          <div class="content">
+            <h2>01</h2>
+            <h3>PROFILE</h3>
+            <p>KNOW ABOUT YOURSELF</p>
+            <a href="profile.html">Read More</a>
+          </div>
+        </div>
+      </div>
+    
+      <div class="card">
+        <div class="box">
+          <div class="content">
+            <h2>02</h2>
+            <h3>Registered Agency</h3>
+            <p>Have a look at registered Agency</p>
+            <a href="registeredagency.html">Read More</a>
+          </div>
+        </div>
+      </div>
+    
+      <div class="card">
+        <div class="box">
+          <div class="content">
+            <h2>03</h2>
+            <h3>SOS Emergency</h3>
+            <p></p>
+            <a href="geolocation.html">Read More</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    
+  
+  </body>
+  
+  </html>
+    
+  
+     
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+
+</html>
+
+
+
+
+                    
+
+
+
+    
+
+
+    <script src="script.js"></script>
+</body>
+</html>
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet"  href="dashboardUser.css">
+</head>
+<body>
+
+  <div class="container">
+    <div class="card">
+      <div class="box">
+        <div class="content">
+          <h2>01</h2>
+          <h3>PROFILE</h3>
+          <p>KNOW ABOUT YOURSELF</p>
+          <a href="#">Read More</a>
+        </div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="box">
+        <div class="content">
+          <h2>02</h2>
+          <h3>Card Two</h3>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore, totam velit? Iure nemo labore inventore?</p>
+          <a href="#">Read More</a>
+        </div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="box">
+        <div class="content">
+          <h2>03</h2>
+          <h3>Card Three</h3>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore, totam velit? Iure nemo labore inventore?</p>
+          <a href="#">Read More</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  
+</body>
+
+</html> -->

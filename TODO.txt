@@ -1,0 +1,15 @@
+1) Firebase to store users
+2) Firebase to store agencies with their coordinates
+3) Sign Up save data to Firebase
+4) Generate OTP
+5) Send OTP to user mobile
+6) Verify OTP
+7) Login - Verify from Firebase
+8) Show user details in Profile
+9) Show agency details in Profile
+
+
+10) Registered Agencies - show on map - fetch from Firebase
+11) Clickable markers
+12) Firebase - store the in-danger locations
+13) Alert on agency dashboard for in-danger locations

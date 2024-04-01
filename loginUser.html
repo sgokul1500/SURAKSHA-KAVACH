@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign in & Sign up Form</title>
+    <link rel="stylesheet" href="login.css" />
+    <link rel="manifest"
+        href="manifest.json">
+        
+
+  </head>
+  <body>
+    <main>
+        
+      <div class="box">
+        <div class="inner-box">
+            
+          <div class="forms-wrap">
+            
+            <form action="index.html" autocomplete="off" class="sign-in-form">
+                <div class="logo">
+                    <img src="./img/logo.png" alt="easyclass" />
+                             </div>
+              <br>
+                <div class="logo">
+                    
+                    <h3>SURAKSHA KAVACH</h3>
+                  </div>
+                  <div class="heading">
+                    <h4>Welcome Back , User</h4>
+                    
+                  </div>
+             
+
+              <div class="actual-form">
+                <div class="input-wrap">
+                  <input
+                  id="name"
+                    type="text"
+                    minlength="4"
+                    class="input-field"
+                    autocomplete="off"
+                    required
+                  />
+                  <label>Name</label>
+                </div>
+
+                <div class="input-wrap">
+                  <input
+                  id="password"
+                    type="password"
+                    minlength="4"
+                    class="input-field"
+                    autocomplete="off"
+                    required
+                  />
+                  <label>Password</label>
+                </div>
+
+
+                <!-- <form   action="dashboardUser.html">
+
+              </form> -->
+
+             
+              <!-- <a href="dashboardUser.html">
+               
+                
+              </a> -->
+
+              <button id="signupButton" class="sign-btn" contenteditable="false" onclick="return login()">Sign In</button>
+
+              <!-- <input  value="Sign In" class="sign-btn"  onclick="login()"> -->
+                
+              
+              
+                <div class="heading">
+                    
+                    <h6>Not registred yet?</h6>
+                    <a href="#" class="toggle">Sign up</a>
+                  </div>
+
+                <p  class="text" >
+                  <h6 style="color: black;">Forgotten your password or you login datails?</h6>
+                  
+                  <a href="#">Get help</a> signing in
+                </p>
+              </div>
+            </form>
+
+            <form action="index.html" autocomplete="off" class="sign-up-form">
+              <div class="logo">
+                <img src="./img/logo.png" alt="" />
+              
+              </div>
+
+              <br>
+              <div class="logo">
+              
+                <h4>SURAKSHA KAVACH</h4>
+              </div>
+
+              <div class="heading">
+                <h4>Get Started , User</h4>
+                
+              </div>
+
+              <div class="actual-form">
+                <div class="input-wrap">
+                  <input
+                  id="signupname"
+                    type="text"
+                    minlength="4"
+                    class="input-field"
+                    autocomplete="off"
+                    required
+                  />
+                  <label>Name</label>
+                </div>
+
+                <div class="input-wrap">
+                  <input
+                  id="contact"
+                    type="number"
+                    class="input-field"
+                    autocomplete="off"
+                    required
+                  />
+                  <label>Contact</label>
+                </div>
+
+                <div class="input-wrap">
+                  <input
+                  id="signuppassword"
+                    type="password"
+                    minlength="4"
+                    class="input-field"
+                    autocomplete="off"
+                    required
+                  />
+                  <label>Password</label>
+                </div>
+
+                <div class="input-wrap" id="enterOTP" style="display: none;">
+                  <input
+                  id="otp"
+                    type="number"
+                    class="input-field"
+                    autocomplete="off"
+                    required
+                  />
+                  <label>Enter OTP</label>
+                </div>
+
+<!-- dynamically otp section -->
+                <!-- <div id="otpSection" style="display: none;">
+                  <hr>
+                  <h4>Enter OTP</h4>
+                  <div class="form-group">
+                      <input type="text" class="form-control" id="otp" placeholder="Enter OTP" required>
+                  </div>
+                  <button type="button" class="btn btn-success" id="verifyButton">Verify</button>
+              </div>
+          </div> -->
+         <!-- <p class="otp" ><a href="otp.html">Get Verified</a></p> -->
+              
+                <!-- <a href="dashboardUser.html">
+                <input  value="Sign Up" class="sign-btn" />
+                
+              </a> -->
+              <button id="signUpButton" class="sign-btn" contenteditable="false" onclick="return register()">Sign UP</button>
+              <button style="display: none;" id="verifyOTPButton" class="sign-btn" contenteditable="false" onclick="return verify()">Verify OTP</button>
+             
+
+                <div class="heading">
+                    
+                    <h6>Already have an account?</h6>
+                    <a href="#" class="toggle">Sign in</a>
+                  </div>
+
+                <p class="text">
+                  <h6 style="color: black;" signing up, I agree to the
+                  <a href="#">Terms of Services</a> and
+                  <a href="#">Privacy Policy</a></p><h6>
+                </p>
+              </div>
+            </form>
+
+
+          </div>
+
+          <!-- <div class="carousel">
+            <div class="images-wrapper">
+              <img src="./img/image1.png" class="image img-1 show" alt="" />
+              <img src="./img/image2.png" class="image img-2" alt="" />
+              <img src="./img/image3.png" class="image img-3" alt="" />
+            </div> -->
+
+            <!-- <div class="text-slider">
+              <div class="text-wrap">
+                <div class="text-group">
+                  <h2>Create your own courses</h2>
+                  <h2>Customize as you like</h2>
+                  <h2>Invite students to your class</h2>
+                </div>
+              </div>  -->
+
+              <!-- <div class="bullets">
+                <span class="active" data-value="1"></span>
+                <span data-value="2"></span>
+                <span data-value="3"></span>
+              </div> -->
+            <!-- </div> -->
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Javascript file -->
+   
+    <script src="script.js"></script>
+    <script src="otp.js"></script>
+  </body>
+</html>

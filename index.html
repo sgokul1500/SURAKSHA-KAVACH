@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="index.css">
+    <link rel="manifest" href="manifest.json">
+    <title>Document</title>
+</head>
+
+<body>
+
+
+    <div class="imgae">
+        <img src="img/logo.png" class="center">
+
+
+        <div>
+
+
+            <!-- <p class="att">Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique incidunt vel hic commodi
+                iure, ratione illo pariatur at et dolorum maxime ipsam ipsum voluptate perferendis delectus tempore
+                cupiditate odio voluptatibus!</p> -->
+        </div>
+        <div class="boc">
+
+
+<div class="user">
+            <a href="loginUser.html">
+                <!-- <button  class="us"  type="button">USER</button> -->
+                <input type="submit" value="User" class="sign-btn" />
+
+            </a>
+        </div>
+
+            <a href="loginAgency.html">
+                <!-- <button class="ag" type="button">AGENCY </button> -->
+                <input type="submit" value="Agency" class="sign-btn" />
+            </a>
+
+        </div>
+    </div>
+
+    <script>
+        window.addEventListener('load', () => {
+            registerSW();
+        });
+
+        // Register the Service Worker
+        async function registerSW() {
+            if ('serviceWorker' in navigator) {
+                try {
+                    await navigator
+                        .serviceWorker
+                        .register('serviceworker.js');
+                }
+                catch (e) {
+                    console.log('SW registration failed');
+                }
+            }
+        }
+
+    </script>
+
+</body>
+
+</html>

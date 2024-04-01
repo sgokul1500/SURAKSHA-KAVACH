@@ -1,0 +1,95 @@
+body {
+  /* background-color: #ff7f50; */
+  /* background: url("https://media.istockphoto.com/id/1325377571/vector/fictional-city-map-navigation-with-rivers-and-parks.jpg?s=612x612&w=0&k=20&c=JITyqhLFwv2zYyNo9MuitnxKST_1sweBk9iYqgRIrSE="); */
+  background-image: url(https://www.shutterstock.com/image-vector/map-mobile-app-planning-travel-600nw-2281719087.jpg);
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+  align-items: center;
+}
+
+.us,
+.ag {
+  padding: 20px;
+  display: flex;
+  border-radius: 20px;
+  font-weight: bold;
+  background-color: black;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 0.8rem;
+  font-size: 0.8rem;
+  margin-bottom: 2rem;
+  transition: 0.3s;
+  /* display: inline-block;
+  width: 100%;
+  height: 43px;
+  background-color: #151111;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  border-radius: 0.8rem;
+  font-size: 0.8rem;
+  margin-bottom: 2rem;
+  transition: 0.3s; */
+}
+/* .ag:hover{
+    color: crimson;
+}
+
+.us:hover{
+    color: crimson;
+} */
+
+img {
+  width: 10vw;
+  height: 40vh;
+}
+
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 45%;
+  height: 20%;
+  padding: 50px;
+}
+
+.boc {
+  padding-top: 100px;
+  border-radius: 60px;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+.sign-btn {
+  display: inline-block;
+  width: 100%;
+  height: 43px;
+  background-color:#fff;
+   font-weight: bold;
+  color: #151111 ;
+  border: none;
+  cursor: pointer;
+  border-radius: 0.8rem;
+  font-size: 0.8rem;
+  margin-bottom: 2rem;
+  transition: 0.3s;
+  padding: 10px 50px 10px 50px;
+}
+
+.sign-btn:hover {
+  background-color:#6796CD;
+}
+
+.att {
+  text-align: center;
+  font-weight: bold;
+}
+
+.user {
+  margin-right: 50px;
+}

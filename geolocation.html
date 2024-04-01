@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>SOS</title>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <!-- Get the leaflet CSS file -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
+        integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+        crossorigin="" />
+    <link rel="stylesheet" href="geolocation.css" />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css"
+    />
+</head>
+
+<body>
+    <!-- <h3 style="text-align: center;">Locate yourself!</h3>      -->
+    <main>
+
+        <div class="box">
+
+            <div class="inner-box">
+
+                <!-- Specify the map and it's dimensions -->
+                <div id="map" style="height: 80%;"></div>
+                <br>
+                <a href="getHelp.html">
+                    <input value="Get Help" class="help-btn" />
+                </a>
+
+            </div>
+        </div>
+    </main>
+
+
+    <!-- Get the leaflet JavaScript file -->
+    <!-- <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
+        integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
+        crossorigin=""></script>
+        <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script> -->
+        <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+        <script src="https://cdn-geoweb.s3.amazonaws.com/esri-leaflet/0.0.1-beta.5/esri-leaflet.js"></script>
+        <script
+        src="https://cdn-geoweb.s3.amazonaws.com/esri-leaflet-geocoder/0.0.1-beta.5/esri-leaflet-geocoder.js"></script>
+    <link rel="stylesheet" type="text/css"
+        href="https://cdn-geoweb.s3.amazonaws.com/esri-leaflet-geocoder/0.0.1-beta.5/esri-leaflet-geocoder.css">
+        
+    <script>
+        // Initialize the map
+        const map = L.map('map')
+
+        // Get the tile layer from OpenStreetMaps
+        L.tileLayer('https://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+
+            // Specify the maximum zoom of the map
+            maxZoom: 19,
+
+            // Set the attribution for OpenStreetMaps
+            attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+        // Set the view of the map
+        // with the latitude, longitude and the zoom value
+        map.setView([48.8584, 2.2945], 16);
+
+        // Set the map view to the user's location
+        // Uncomment below to set map according to user location
+        map.locate({ setView: true, maxZoom: 16 });
+
+        var marker;
+        navigator.geolocation.getCurrentPosition(function (position) {
+            console.log(position);
+            console.log(position.coords.latitude)
+            console.log(position.coords.longitude)
+            marker = L.marker([position.coords.latitude, position.coords.longitude]).addTo(map);
+        });
+
+        function onLocationError(e) {
+            alert(e.message);
+        }
+
+        map.on('locationerror', onLocationError);
+        L.control.scale().addTo(map);
+
+        var searchControl = new L.esri.Controls.Geosearch().addTo(map);
+//         L.Control.geocoder({
+//     position: "topright",
+//     placeholder: "Buscar Direccion",
+//     errorMessage: "Dirección no encontrada.",
+//     showResultIcons: true,
+//     defaultMarkGeocode: false
+// }).on('markgeocode', function(e) {
+//     posMarker(e.geocode.center);
+//     objMap.panTo(e.geocode.center);
+// } )
+L.control.scale().addTo(map);
+// var searchControl = L.Control.geocoder({
+//         geocoder: L.Control.Geocoder.nominatim()
+//       }).addTo(map);
+
+        var results = new L.LayerGroup().addTo(map);
+
+        searchControl.on('results', function (data) {
+            results.clearLayers();
+            for (var i = data.results.length - 1; i >= 0; i--) {
+                results.addLayer(L.marker(data.results[i].latlng));
+            }
+        });
+
+        // // Show a market at the position of the Eiffel Tower
+        // let eiffelMarker = L.marker([48.8584, 2.2945]).addTo(map);
+
+        // // Bind popup to the marker with a popup
+       // results.bindPopup("Eiffel Tower").openPopup();
+    </script>
+</body>
+
+</html>
