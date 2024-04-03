@@ -6,6 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Sign in & Sign up Form</title>
     <link rel="stylesheet" href="login.css" />
+    <link rel="manifest"
+        href="manifest.json">
+        
+
   </head>
   <body>
     <main>
@@ -25,7 +29,7 @@
                     <h3>SURAKSHA KAVACH</h3>
                   </div>
                   <div class="heading">
-                    <h4>Welcome Back , Agency</h4>
+                    <h4>Welcome Back , User</h4>
                     
                   </div>
              
@@ -33,46 +37,56 @@
               <div class="actual-form">
                 <div class="input-wrap">
                   <input
-                  id="actualname"
+                  id="agencyname"
                     type="text"
                     minlength="4"
                     class="input-field"
                     autocomplete="off"
                     required
                   />
-                  <label>Name</label>
+                  <label>Agency Name</label>
                 </div>
 
                 <div class="input-wrap">
                   <input
-                  id="actualpassword"
+                  id="agencyloginpassword"
                     type="password"
                     minlength="4"
                     class="input-field"
                     autocomplete="off"
                     required
                   />
-                  <label>Password</label>
+                  <label>Agency Password</label>
                 </div>
 
-                <button id="signupButton" class="sign-btn" contenteditable="false" onclick="return agencylogin()">Sign In</button>
 
+                <!-- <form   action="dashboardUser.html">
 
-                <!-- <a href="dashboardAgency.html">
-                <input  value="Sign In" class="sign-btn" />
+              </form> -->
 
+             
+              <!-- <a href="dashboardUser.html">
+               
+                
               </a> -->
+
+              <button id="signupButton" class="sign-btn" contenteditable="false" onclick="return login()">Sign In</button>
+
+              <!-- <input  value="Sign In" class="sign-btn"  onclick="login()"> -->
+                
+              
+              
                 <div class="heading">
                     
                     <h6>Not registred yet?</h6>
                     <a href="#" class="toggle">Sign up</a>
                   </div>
 
-                <p class="text">
-                 <h6 style="color: black"> Forgotten your password or you login datails?
-                  <a href="#">Get help</a> signing in</h6>
+                <p  class="text" >
+                  <h6 style="color: black;">Forgotten your password or you login datails?</h6>
+                  
+                  <a href="#">Get help</a> signing in
                 </p>
-              
               </div>
             </form>
 
@@ -89,38 +103,41 @@
               </div>
 
               <div class="heading">
-                <h4>Get Started , Agency</h4>
+                <h4>Get Started , User</h4>
                 
               </div>
 
               <div class="actual-form">
                 <div class="input-wrap">
                   <input
-                  id="agencyname"
+                  id="agencysignupname"
                     type="text"
                     minlength="4"
                     class="input-field"
                     autocomplete="off"
                     required
                   />
-                  <label>Name</label>
+                  <label>Agency Name</label>
                 </div>
 
                 <div class="input-wrap">
                   <input
-                    type="email"
+                  id="agencypassword"
+                    type="password"
+                    minlength="4"
                     class="input-field"
                     autocomplete="off"
                     required
                   />
-                  <label>Domain of Expertise</label>
+                  <label>Agency Password</label>
                 </div>
 
+
+                
                 <div class="input-wrap">
                   <input
-                  
-                    type="password"
-                    minlength="4"
+                  id="agencycontact"
+                    type="number"
                     class="input-field"
                     autocomplete="off"
                     required
@@ -128,12 +145,13 @@
                   <label>Contact</label>
                 </div>
 
+                 
+               
 
                 <div class="input-wrap">
                   <input
-                  id="agencypassword"
-                    type="Location"
-                    minlength="100"
+                  id="agencyaddress"
+                    type="text"
                     class="input-field"
                     autocomplete="off"
                     required
@@ -141,24 +159,68 @@
                   <label>Location</label>
                 </div>
 
+                <div class="input-wrap">
+                  <input
+                  id="agencyexpert"
+                    type="text"
+                    class="input-field"
+                    autocomplete="off"
+                    required
+                  />
+                  <label>Expertise</label>
+                </div>
+                
 
-                <button id="firstsignupButton" class="sign-btn" contenteditable="false" onclick="return agencysetup()">Sign UP</button>
-                <!-- <a href="dashboardAgency.html">
+
+
+                
+
+                <div class="input-wrap" id="enterOTP" style="display: none;">
+                  <input
+                  id="otp"
+                    type="agencynumber"
+                    class="input-field"
+                    autocomplete="off"
+                    required
+                  />
+                  <label>Enter OTP</label>
+                </div>
+
+<!-- dynamically otp section -->
+                <!-- <div id="otpSection" style="display: none;">
+                  <hr>
+                  <h4>Enter OTP</h4>
+                  <div class="form-group">
+                      <input type="text" class="form-control" id="otp" placeholder="Enter OTP" required>
+                  </div>
+                  <button type="button" class="btn btn-success" id="verifyButton">Verify</button>
+              </div>
+          </div> -->
+         <!-- <p class="otp" ><a href="otp.html">Get Verified</a></p> -->
+              
+                <!-- <a href="dashboardUser.html">
                 <input  value="Sign Up" class="sign-btn" />
+                
               </a> -->
+              <button id="signUpButton" class="sign-btn" contenteditable="false" onclick="return register()">Sign UP</button>
+              <button style="display: none;" id="verifyOTPButton" class="sign-btn" contenteditable="false" onclick="return verify()">Verify OTP</button>
+             
+
                 <div class="heading">
                     
-                    <h6 class="black">Already have an account?</h6>
+                    <h6>Already have an account?</h6>
                     <a href="#" class="toggle">Sign in</a>
                   </div>
 
                 <p class="text">
-                  <h6 style="color: black"> signing up, I agree to the
+                  <h6 style="color: black;" signing up, I agree to the
                   <a href="#">Terms of Services</a> and
-                  <a href="#">Privacy Policy</a></h6>
+                  <a href="#">Privacy Policy</a></p><h6>
                 </p>
               </div>
             </form>
+
+
           </div>
 
           <!-- <div class="carousel">
@@ -189,7 +251,8 @@
     </main>
 
     <!-- Javascript file -->
-
-    <script src="script.js"></script>
+   
+    <script src="agencyscript.js"></script>
+    <script src="otp.js"></script>
   </body>
 </html>

@@ -4,25 +4,204 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet"  href="table.css">
+    <!-- <link rel="stylesheet" href="table.css"> -->
+    <link rel="stylesheet" href="table.css">
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 <body>
     
+<div class="container search-table">
+  <div class="search-box">
+      <div class="row">
+          <div class="col-md-3">
+              <h5>Search All Fields</h5>
+          </div>
+          <div class="col-md-9">
+              <input type="text" id="myInput" onkeyup="myFunction()" class="form-control">
+              <script>
+                  $(document).ready(function () {
+                      $("#myInput").on("keyup", function () {
+                          var value = $(this).val().toLowerCase();
+                          $("#myTable tr").filter(function () {
+                              $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                          });
+                      });
+                  });
+              </script>
+          </div> 
+      </div>
+  </div>
+  <div class="search-list">
+      
+      <table class="table" id="myTable">
+          <thead>
+              <tr>
+                  <th>Agency Name</th>
+                  <th>Location</th>
+                  <th>Expertise</th>
+                  <th>Contact</th>
+              </tr>
+          </thead>
+          <tbody>
+              
+          
+          <tr>
+              <td>Quick Agency</td>
+              <td>Juhinagar</td>
+              <td>Natural</td>
+              <td>123456789</td>
+          </tr>
+          <tr>
+            <td>Brisk Agency</td>
+            <td>Nerul</td>
+            <td>Natural</td>
+            <td>234567891</td>
+          </tr>
+          <tr>
+            <td>Ongo Agency</td>
+            <td>Nerul</td>
+            <td>Fire</td>
+            <td>345678921</td>
+          </tr>
+          <tr>
+            <td>RuntoRun Agency</td>
+            <td>Turbhe</td>
+            <td>Natural</td>
+            <td>567894321</td>
+          </tr>
+          <tr>
+            <td>Victems Help Agency</td>
+              <td>Turbhe</td>
+              <td>Chemical Spills</td>
+              <td>456784321</td>
+             
+          </tr>
+          <tr>
+            <td>Relief Agency</td>
+            <td>Kalyan</td>
+            <td>Natural</td>
+            <td>56789021</td>
+          </tr>
+          <tr>
+            <td>Safe Agency</td>
+              <td>Dombivli</td>
+              <td>Natural</td>
+              <td>123457896</td>
+              
+          </tr>
+          <tr>
+            <td>Domestic Agency</td>
+              <td>Dombivli</td>
+              <td>Chemical Spills</td>
+              <td>987654321</td>
 
-    <object  data="table.html"></object>
+          </tr>
+          <tr>
+            <td>wego Agency</td>
+              <td>Kopar</td>
+              <td>Fire</td>
+              <td>876543291</td>
 
+          </tr>
+          <tr>
+            <td>OnetoOne Agency</td>
+              <td>Thakurli</td>
+              <td>Natural</td>
+              <td>9123456789</td>
 
+          </tr>
+          </tbody>
+      </table>
 
-
-
-
-
-
-
-
-
-
-
-
+  </div>
+</div>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <input type="text" class="myInput" onkeyup="myFunction()" placeholder="Search by location">
+
+    <table id="myTable">
+      <tr class="header">
+        <th style="width:80%;">Name</th>
+        <th style="width:40%;">Location</th>
+        <th style="width:40%;">Expertise</th>
+
+      </tr>
+      <tr>
+        <td>Naru ka aganecy</td>
+        <td>Junhinagar,Navi Mumbai</td>
+        <td>NAutural</td>
+      </tr>
+      <tr>
+        <td>Berglunds snabbkop</td>
+        <td>Sweden</td>
+      </tr>
+      <tr>
+        <td>Island Trading</td>
+        <td>UK</td>
+      </tr>
+      <tr>
+        <td>Koniglich Essen</td>
+        <td>Germany</td>
+      </tr>
+    </table> -->
+
+<!-- 
+<table class="styled-table">
+  <thead>
+      <tr>
+          <th>Name</th>
+          <th>Points</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>Dom</td>
+          <td>6000</td>
+      </tr>
+      <tr class="active-row">
+          <td>Melissa</td>
+          <td>5150</td>
+      </tr>
+     
+  </tbody>
+</table> -->
+
+
+    <!-- <script>
+        function myFunction() {
+          // Declare variables
+          var input, filter, table, tr, td, i, txtValue;
+          input = document.getElementById("myInput");
+          filter = input.value.toUpperCase();
+          table = document.getElementById("myTable");
+          tr = table.getElementsByTagName("tr");
+        
+          // Loop through all table rows, and hide those who don't match the search query
+          for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[0];
+            if (td) {
+              txtValue = td.textContent || td.innerText;
+              if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                tr[i].style.display = "";
+              } else {
+                tr[i].style.display = "none";
+              }
+            }
+          }
+        }
+        </script> -->
