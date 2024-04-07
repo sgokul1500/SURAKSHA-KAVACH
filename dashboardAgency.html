@@ -120,83 +120,72 @@
       background-color: #fff !important;
     }
   </style>
-  
-  <body>
-   
-    
-    <!-- <div class="container " style="text-align:center;">
-      
-      <div class="row">
-        <div class="card text-white bg-warning mb-3 mx-auto" style="max-width: 18rem;">
-          <div class="card-body">
+  <script>
+function getAgencyName() {  
+    fetch("http://127.0.0.1:5001/profile", {
+      method: "GET",
+      credentials: "include"
+    })
+    .then(data => {
+        if (!data.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return data.json(); // Convert response to JSON format and return the promise
+    })
+      .then((response) => {
+         document.getElementById("agencyName").value = response.username;   
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+        return null;  
+      });  
+      return false;      
+  }
 
-            <a href="profile.html">
-            <h4 class="card-title">Profile</h4>
-            
-            <p class="card-text">Know about self</p>
-        </a>
+  window.onload = getAgencyName;
 
-          </div>
-        </div>
-        <div class="card text-white mb-3 mx-auto" style="max-width: 18rem; background-color: #FB4720;">
-          <div class="card-body">
-            <a href="table.html">
-            <h4 class="card-title">Registerd Agency</h4>
-  
-            
-            <p class="card-text">Take a look at saviours!!</p>
-        </a>
-          </div>
-        </div>
-        <div class="card text-white bg-danger mb-3 mx-auto" style="max-width: 18rem;">
-          <div class="card-body">
-            <a href="geolocation.html">
-            <h4 class="card-title">SOS Emergency</h4>
-           
-            <p class="card-text">Send an automatic 100 call and alert registered near ones.</p>
-        </a>
-          </div>
-        </div>
-      </div>
-  
-  
-    </div> -->
+  </script>
+ 
 
     <div class="container">
       <div class="card">
         <div class="box">
           <div class="content">
             <h2>01</h2>
-            <h3>PROFILE</h3>
-            <p>KNOW ABOUT YOURSELF</p>
-            <a href="profile.html">Read More</a>
+            <h3>Profile</h3>
+         
+            <a href="agencyprofile.html">Read More</a>
           </div>
         </div>
       </div>
     
-      <div class="card">
-        <div class="box">
-          <div class="content">
-            <h2>02</h2>
-            <h3>Registered Agency</h3>
-            <p>Have a look at registered Agency</p>
-            <a href="registeredagency.html">Read More</a>
-          </div>
-        </div>
-      </div>
     
-      <div class="card">
+      <!-- <div class="card">
         <div class="box">
           <div class="content">
             <h2>03</h2>
-            <h3>SOS Emergency</h3>
+            <h3>View Emergencies</h3>
             <p></p>
-            <a href="geolocation.html">Read More</a>
+            <form action="http://127.0.0.1:5002/AgencySOS" method="get">
+              <input id="agencyName">
+              <button type="submit">View Emergencies</button>
+          </form>
+            
           </div>
         </div>
       </div>
+    </div> -->
+    <div class="card">
+      <div class="box">
+        <div class="content">
+          <h2>03</h2>
+          <h3 style="padding-bottom: 20px;">View Emergencies</h3>
+          <form action="http://127.0.0.1:5002/AgencySOS" method="get">
+            <button type="submit">View Emergencies</button>
+          </form>
+        </div>
+      </div>
     </div>
-  
     
   
   </body>
@@ -245,54 +234,3 @@
 
     <script src="script.js"></script>
 </body>
-</html>
-
-<!-- <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet"  href="dashboardUser.css">
-</head>
-<body>
-
-  <div class="container">
-    <div class="card">
-      <div class="box">
-        <div class="content">
-          <h2>01</h2>
-          <h3>PROFILE</h3>
-          <p>KNOW ABOUT YOURSELF</p>
-          <a href="#">Read More</a>
-        </div>
-      </div>
-    </div>
-  
-    <div class="card">
-      <div class="box">
-        <div class="content">
-          <h2>02</h2>
-          <h3>Card Two</h3>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore, totam velit? Iure nemo labore inventore?</p>
-          <a href="#">Read More</a>
-        </div>
-      </div>
-    </div>
-  
-    <div class="card">
-      <div class="box">
-        <div class="content">
-          <h2>03</h2>
-          <h3>Card Three</h3>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore, totam velit? Iure nemo labore inventore?</p>
-          <a href="#">Read More</a>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  
-</body>
-
-</html> -->

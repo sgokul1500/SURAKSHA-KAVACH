@@ -19,13 +19,13 @@ app.secret_key = 'abcdef123456'  # Change this to a random string
 
 CORS(app, supports_credentials=True)
 
-@app.route('/getUsers',methods=['GET'])
-def getUsers():
-    # Perform the database query and directly convert to JSON array
-    user = agency_collection.find_one({})  # Exclude _id field
-    session['user_id'] = str(user['_id'])
-    session.modified = True
-    return user["username"]
+# @app.route('/getUsers',methods=['GET'])
+# def getUsers():
+#     # Perform the database query and directly convert to JSON array
+#     user = agency_collection.find_one({})  # Exclude _id field
+#     session['user_id'] = str(user['_id'])
+#     session.modified = True
+#     return user["username"]
     
 
 @app.route('/register', methods=['POST'])
@@ -100,7 +100,7 @@ def login():
         return jsonify({'message': 'Invalid username or password'}), 401
 
     # Store the user's ID in the session
-    session['user_id'] = str(user['_id'])
+    session['agency_id'] = str(user['_id'])
     session.modified = True
 
     print(session)
@@ -111,19 +111,19 @@ def login():
 @app.route('/logout', methods=['POST'])
 def logout():
     # Remove user ID from session
-    session.pop('user_id', None)
+    session.pop('agency_id', None)
     return jsonify({'message': 'Logged out successfully'}), 200
 
 
 @app.route('/profile', methods=['GET'])
 def profile():
     # Check if user is logged in
-    if 'user_id' not in session:
+    if 'agency_id' not in session:
         return jsonify({'message': 'You are not logged in'}), 401
 
     # Find user by ID
-    user_id = session['user_id']
-    user = agency_collection.find_one({'_id': ObjectId(user_id)})
+    agency_id = session['agency_id']
+    user = agency_collection.find_one({'_id': ObjectId(agency_id)})
     if not user:
         return jsonify({'message': 'User not found'}), 404
 
@@ -131,11 +131,11 @@ def profile():
     return jsonify({
         'username': user['username'],
         'contact' :user['contact'],
-        'email':user['email'],
+        'expertise':user['expertise'],
         'address':user['address']
         
     }), 200
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True,port=5001)

@@ -48,7 +48,7 @@ function login() {
     alert("Please enter both username and passworddddd");
   }
 
-  fetch("http://127.0.0.1:5000/login?username="+username+"&password="+password, {
+  fetch("http://127.0.0.1:5001/login?username="+username+"&password="+password, {
     method: "GET",
     headers: {
       'Content-Type': 'application/json',
@@ -98,7 +98,7 @@ function verify(){
   }
 
       // Register into users mongodb
-      fetch("http://127.0.0.1:5000/register", {
+      fetch("http://127.0.0.1:5001/register", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -139,7 +139,7 @@ function register() {
 
   otpGen = Math.floor(1000 + Math.random() * 9000);
   // OTP verification
-  fetch("http://127.0.0.1:5000/send-sms", {
+  fetch("http://127.0.0.1:5001/send-sms", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

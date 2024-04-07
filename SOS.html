@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+
+<!-- {% load static %}
+{% block content %}
+{% if user.is_authenticated %}
+Hi {{ user.username }}!
+
+{% endif %}
+{% endblock %} -->
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Safely</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" >
+
+
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
+        integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+        crossorigin="" />
+
+    <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
+        integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
+        crossorigin=""></script>
+    <script src="https://cdn-geoweb.s3.amazonaws.com/esri-leaflet/0.0.1-beta.5/esri-leaflet.js"></script>
+
+    <script
+        src="https://cdn-geoweb.s3.amazonaws.com/esri-leaflet-geocoder/0.0.1-beta.5/esri-leaflet-geocoder.js"></script>
+    <link rel="stylesheet" type="text/css"
+        href="https://cdn-geoweb.s3.amazonaws.com/esri-leaflet-geocoder/0.0.1-beta.5/esri-leaflet-geocoder.css">
+    <!-- <link rel="stylesheet" href="{% static 'styles.css'%}"> -->
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <!-- <script src="{% static 'scripts/index.js' %}"></script> -->
+
+
+</head>
+<style>
+    h4 {
+        margin-top: 30px;
+    }
+    body{
+        /* background-image: url(https://www.shutterstock.com/image-vector/map-mobile-app-planning-travel-600nw-2281719087.jpg); */
+    }
+
+    .whitey {
+        padding: 30px;
+        /* padding-top: 50px; */
+        left: 0;
+        width: 30%;
+        text-align: center;
+        height: 100%;
+        position:absolute;
+        z-index: 1;
+        top: 0;
+        overflow-x: hidden;
+        /* margin-top: 60px; */
+        background-size: cover;
+        background-image: url(https://www.shutterstock.com/image-vector/map-mobile-app-planning-travel-600nw-2281719087.jpg);
+
+    }
+    .map-container {
+      width: 100%; /* Ensure the map container fills its parent */
+      height: 400px; /* Set the initial height of the map container */
+    }
+
+    #mapid {
+        right: 0;
+        height: 100%;
+        width: 70%;
+        ;
+        position:absolute;
+        z-index: 1;
+        /* top: 0; */
+        overflow-x: hidden;
+        /* margin-top: 60px; */
+        margin-right: 20px;
+        margin-bottom: 60px;
+        /* margin-left: 60px; */
+    }
+     /* Custom tooltip style */
+     .custom-tooltip {
+      background-color: #FFD700; /* Golden yellow */
+      color: black;
+      font-weight: bold;
+      padding: 8px;
+      border-radius: 4px;
+      font-family: Arial, sans-serif;
+    }
+    .container {
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    .box {
+      flex: 1 1 50%;
+      padding: 20px;
+      box-sizing: border-box;
+      border: 1px solid #ccc;
+    }
+    @media only screen and (max-width: 550px) {
+      .box {
+        flex: 1 1 100%; /* Each box takes up 100% width on smaller screens */
+        margin-bottom: 20px; /* Adds space between the boxes */
+        flex-direction: column;
+      }
+
+      .map-container {
+        height: 300px;
+        flex-direction: column; /* Adjust the height of the map container for smaller screens */
+      }
+    }
+
+    
+    .popup-content {
+      width: 300px;
+    }
+
+    .popup-card {
+     width: 100%; /* Card width adjusted to fit popup */
+      background-color: #fff;
+      padding: 10px;
+      border-radius: 5px;      
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    }
+
+    .popup-card p {
+      margin: 0;
+    }
+</style>
+
+<body>  
+    <div class="container">  
+    <div class="whitey box">
+        <form id="reportemer" action="{% url 'markUnsafe' %}" method="POST">
+            <select class="btn btn-primary" style="font-size: 20px; margin-top: 20px; color: black; background-color: white; "id="emergency">
+                <option>Choose your Emergency</option>
+                <option>Fire</option>
+                <option>Medical</option>
+                <option>Flood</option>
+                <option>Earthquake</option>
+                <option>Other</option>
+            </select>
+            <textarea class="form-control" style="margin-top: 20px;"
+                type="text">Describe your emergency</textarea>
+            <input onclick="return getHelp()" class="btn btn-dark" value="Get Help!" readonly
+                style="margin-top: 20px; color:black;background-color: white; font-size: 20px; width: 300px; border-color: black;">
+        </form>
+    </div>
+    <div id="mapid" class="box"></div>
+
+</div>
+
+    <script>
+        var latlng;
+        var mymap;
+        var crimeLocation;
+        var coodsLat = [];
+        var coodsLng = [];
+        var agenciesList = [];
+        var mycoord = {};
+        //Store all Markers here
+        myMarkers = []
+         // Function to show alert on marker and make it blink
+        var alertShown = false; // Track if alert has been shown
+
+        navigator.geolocation.getCurrentPosition(function (location) {            
+            //Getting current location
+            latlng = new L.LatLng(location.coords.latitude, location.coords.longitude);
+            mycoord.latlng = {};
+            mycoord.latlng.lat = location.coords.latitude
+            mycoord.latlng.lng = location.coords.longitude          
+            //Getting current map
+            mymap = L.map('mapid').setView(latlng, 13)
+            mymap.locate({ watch: true });
+            currentLocationMarker = L.marker(latlng,{ icon: blueIcon }).bindTooltip("Your Location",{ permanent: true, direction: 'bottom',className: 'custom-tooltip'  });
+            currentLocationMarker.type = "Your Location"
+            currentLocationMarker.name = "Your Location";
+            currentLocationMarker.addTo(mymap);
+            myMarkers.push(currentLocationMarker);
+            //Showing entire map view
+            L.tileLayer('http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}', {
+                maxZoom: 20,
+                subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
+            }).addTo(mymap);
+           
+            //Scales added
+            L.control.scale().addTo(mymap);
+
+            //Search button
+            var searchControl = new L.esri.Controls.Geosearch().addTo(mymap);
+            var results = new L.LayerGroup().addTo(mymap);
+            searchControl.on('results', function (data) {
+                for (var i = data.results.length - 1; i >= 0; i--) {
+                    srcMarker = L.marker(data.results[i].latlng);                    
+                    results.addLayer(srcMarker);
+                    console.log("Coods are");
+                    console.log(data.results[i]);
+                }
+            });
+
+            //Populate agencies from agencies.json
+            const url = 'agencies.json';
+            
+            var agencies = new L.LayerGroup().addTo(mymap);
+            // Fetch the JSON file
+            fetch(url)
+            .then(response => {
+                if (!response.ok) {
+                throw new Error('Network response was not ok');
+                }
+                return response.json(); // Parse the JSON response
+            })
+            .then(data => {
+                agenciesList = data;
+                // Iterate through each agency and add a marker
+                data.forEach(agency => {
+                    console.log(agency);
+                    srcMarker = L.marker(agency.latlng,{ icon: violetIcon }).bindTooltip(agency.name,{ permanent: true, direction: 'bottom',className: 'custom-tooltip'  })
+                    srcMarker.type = agency.type;
+                    srcMarker.name = agency.name;
+                    srcMarker.address = agency.address;
+                    srcMarker.contact = agency.contact;
+                    agencies.addLayer(srcMarker);
+                    myMarkers.push(srcMarker);
+
+                });
+            })
+            .catch(error => {
+                console.error('There was a problem fetching the data:', error);
+            });
+
+        //   var group = new L.featureGroup([currentLocationMarker,agencies]);
+        //    mymap.fitBounds(group.getBounds());
+
+            
+        });
+
+        // Define blue icon
+        var blueIcon = L.icon({
+            iconUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon.png',
+            iconSize: [30, 50],
+            iconAnchor: [12, 40],
+            popupAnchor: [1, -34],
+            shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png',
+            shadowSize: [41, 40],
+            shadowAnchor: [12, 40]
+        });
+        // Define violet icon
+        var violetIcon = L.icon({
+            iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-violet.png',
+            iconSize: [30, 50],
+            iconAnchor: [12, 40],
+            popupAnchor: [1, -34],
+            shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png',
+            shadowSize: [41, 40],
+            shadowAnchor: [12, 40]
+        });
+
+        // Define green icon
+        var greenIcon = L.icon({
+            iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png',
+            iconSize: [30, 50],
+            iconAnchor: [12, 40],
+            popupAnchor: [1, -34],
+            shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png',
+            shadowSize: [41, 40],
+            shadowAnchor: [12, 40]
+        });
+
+
+        // Function to calculate the Euclidean distance between two points
+        function euclideanDistance(x1, y1, x2, y2) {
+            return Math.sqrt(Math.pow((x2 - x1), 2) + Math.pow((y2 - y1), 2));
+        }
+        //algo to find the nearest agency
+        function getHelp() {
+            
+            currentAgencyList = agenciesList.filter(agency => agency.type ===document.getElementById("emergency").value)
+          
+            // Find the nearest place
+            let nearestPlace;
+            let minDistance = Infinity;
+            currentAgencyList.forEach(p => {
+            const distance = euclideanDistance(mycoord.latlng.lat, mycoord.latlng.lng, p.latlng.lat, p.latlng.lng);
+            console.log(p.name+" " +distance)
+                if (distance < minDistance) {
+                    minDistance = distance;
+                    nearestPlace = p;                                       
+                }
+             });
+            nearestPlaceMarker = null;
+
+             myMarkers.forEach(m => {
+                console.log(m)
+                if ((m.type != document.getElementById('emergency').value) && (m.type != "Your Location")){
+                    mymap.removeLayer(m);
+                }
+
+                if(m.name === nearestPlace.name){
+                    m.setIcon(greenIcon);
+                    nearestPlaceMarker = m;
+                }
+             });
+
+             var redLine = L.polyline([], { color: 'red' }).addTo(mymap);
+             redLine.setLatLngs([nearestPlace.latlng,mycoord.latlng]);
+            
+             blinkMarker(nearestPlaceMarker);
+             
+            return false;
+        }
+
+
+        function blinkMarker(marker) {
+            marker.bindPopup(getPopupContent(marker.name,marker.address,marker.contact)).openPopup(); 
+            var visible = true;
+            var intervalId = setInterval(function() {
+            visible = !visible;
+            marker.setOpacity(visible ? 1 : 0); // Toggle marker visibility
+            }, 500); // Blink interval (500ms)
+        }
+
+         // Function to generate HTML for the popup content
+        function getPopupContent(agencyName,agencyAddress,agencyContact) {
+
+            var html = '<div class="popup-content">' +
+                        '<div class="popup-card">' +
+                        '<p><strong id="status" style="color: green; font-weight: bold;">Agency Has Been Notified</strong></p> ' +
+                        '<br />'+
+                        '<p><strong>Agency Name:</strong> ' + agencyName + '</p>' +
+                        '<p><strong>Agency Address:</strong> ' + agencyAddress + '</p>' +
+                        '<p><strong>Agency Contact:</strong> ' + agencyContact + '</p>' +
+                        '<br />'+
+                        '<button style="font-size: 13px; width: 150px; height: 30px;" class="btn btn-success" onclick="refreshStatus()">Refresh Status</button>' +
+                        '</div>' +
+                    '</div>';
+
+            return html;
+        }
+
+        function refreshStatus(){
+
+        }
+
+
+
+
+
+        $(document).on('submit', '#report', function (event) {
+            event.preventDefault();
+            var $form = $(this),
+            url = $form.attr('action');
+            var paramArr = $("#reportcrime").serializeArray();
+            paramArr.push({ name: "lat", value: crimeLocation.lat });
+            paramArr.push({ name: "lng", value: crimeLocation.lng });
+            $.post(url, $.param(paramArr), function (result) {
+                alert('success');
+            });
+            return false;
+        });
+
+        $(document).on('submit', '#SOSForm', function (event) {
+            event.preventDefault();
+            var $form = $(this),
+                url = $form.attr('action');
+            var paramArr = $("#SOSForm").serializeArray();
+            paramArr.push({ name: "test", value: "lalala" });
+
+            $.post(url, $.param(paramArr), function (result) {
+                alert('success');
+            });
+            return false;
+        });
+
+        function saferoutesfunc() {
+            var HttpClient = function () {
+                this.get = function (aUrl, aCallback) {
+                    var anHttpRequest = new XMLHttpRequest();
+                    anHttpRequest.onreadystatechange = function () {
+                        if (anHttpRequest.readyState == 4 && anHttpRequest.status == 200)
+                            aCallback(anHttpRequest.responseText);
+                    }
+
+                    anHttpRequest.open("GET", aUrl, true);
+                    anHttpRequest.send(null);
+                }
+            }
+            myloc1Lat = srcCood.lat;
+            myloc1Long = srcCood.lng;
+            myloc2Lat = destCood.lat;
+            myloc2Long = destCood.lng;
+            var group = new L.featureGroup([srcMarker, destMarker]);
+
+            mymap.fitBounds(group.getBounds());
+            var geocoderAPISrc = new HttpClient();
+            abc = 'https://route.ls.hereapi.com/routing/7.2/calculateroute.json?waypoint0=' + myloc1Lat + '%2C' + myloc1Long + '&waypoint1=' + myloc2Lat + '%2C' + myloc2Long + '&mode=fastest%3Bcar&alternatives=4&apiKey=N2AFSomTN5V2AoOG6_Lqq8lVFxaKO0uM4H-Y4Q0mWhU'
+            geocoderAPISrc.get(abc, function (response) {
+                // do something with response
+                let result = JSON.parse(response);
+                console.log("Here maps res: ");
+                routes = result.response.route;
+                // item = routes[4];
+                // myroute = item.leg[0].maneuver;
+                // //console.log(myroute);
+                // latlngs = [];
+                // myroute.forEach(function (item, index) {
+                //     console.log(item.instruction);
+                //     console.log(item.position.latitude + " , " + item.position.longitude)
+                //     var routeMarker = new L.LatLng(item.position.latitude, item.position.longitude);
+                //     L.marker(routeMarker).addTo(mymap);
+                //     latlngs.push([item.position.latitude, item.position.longitude])
+                // });
+
+
+                colors = ['red', 'blue', 'green', 'yellow', 'orange', 'black'];
+                j = 0;
+                routes.forEach(function (item, index) {
+                    console.log(index);
+                    myroute = item.leg[0].maneuver;
+                    //console.log(myroute);
+                    latlngs = []
+                    myroute.forEach(function (item, index) {
+                        console.log(item.instruction);
+                        console.log(item.position.latitude + " , " + item.position.longitude)
+                        var routeMarker = new L.LatLng(item.position.latitude, item.position.longitude);
+                        L.marker(routeMarker).addTo(mymap);
+                        latlngs.push([item.position.latitude, item.position.longitude])
+                        var polyline = L.polyline(latlngs, { color: colors[j] }).addTo(mymap);
+                        // zoom the map to the polyline
+                        mymap.fitBounds(polyline.getBounds());
+                    });
+
+                    j++;
+
+
+                });
+
+
+
+            });
+        }
+   
+   
+   
+   
+   </script>
+
+</body>
+
+
+
+</html>

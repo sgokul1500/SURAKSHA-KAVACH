@@ -1,0 +1,46 @@
+[
+    {
+        "latlng": {
+            "lat": 19.227001,
+            "lng": 73.083701
+        },
+        "name": "Fire Service Station",
+        "type": "Fire",
+        "address": "Dombivli West, Kalu Nagar, Thane, Maharashtra, 421202",
+        "contact": 123456789
+    },
+
+    {
+        "latlng": {
+            "lat": 19.247973584219807,
+            "lng": 73.12263943866017
+        },
+        "name": "Fire Brigade Workshop, Kalyan West",
+        "type": "Fire",       
+        "address": "Kalyan West, Swanand Nagar, Thane, Maharashtra, 421301",
+        "contact": 123456789
+    },
+
+    {
+        "text": "Jivdani Hospital, Desai Gaon, Thane, Maharashtra, 421204, IND",
+        "latlng": {
+            "lat": 19.159493,
+            "lng": 73.067726
+        },
+        "name": "Jivdani Hospital",
+        "type":"Medical",
+        "address": "Desai Gaon, Thane, Maharashtra, 421204",
+        "contact": 123456789
+    }
+    ,
+    {
+        "latlng": {
+            "lat": 19.2177902,
+            "lng": 73.1291393
+        },
+        "name": "Jan Kalyan Multispeciality Hospital",
+        "type":"Medical",
+        "address": "Nadavli, Pisavali, Thane, Maharashtra, 421306",
+        "contact": 123456789
+    }
+]

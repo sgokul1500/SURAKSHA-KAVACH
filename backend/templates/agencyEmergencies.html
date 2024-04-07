@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agency SOS</title>
+    <script src="agencyEmergencies.js"></script>
+</head>
+<body>
+    <h1>Agency SOS</h1>
+
+    <h2>Section 1: Agency Has Been Notified</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>User Name</th>
+                <th>Emergency Type</th>
+                <th>Emergency Description</th>
+                <th>Emergency Location</th>
+                <th>Status</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for data in section1_data %}
+            <tr>
+                <td>{{ data.username }}</td>
+                <td>{{ data.emergencyType }}</td>
+                <td>{{ data.emergencyDescription }}</td>
+                <td>{{ data.emergencyLocation }}</td>
+                <td>{{ data.status }}</td>
+                <td>
+                    <form action="/initiate_action" method="post">
+                        <input type="hidden" name="id" value="{{ data._id }}">
+                        <button type="submit">Initiate Action</button>
+                    </form>
+                    <form action="/mark_resolved" method="post">
+                        <input type="hidden" name="id" value="{{ data._id }}">
+                        <button type="submit">Mark as Resolved</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <h2>Section 2: Action Initiated</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>User Name</th>
+                <th>Emergency Type</th>
+                <th>Emergency Description</th>
+                <th>Emergency Location</th>
+                <th>Status</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for data in section2_data %}
+            <tr>
+                <td>{{ data.username }}</td>
+                <td>{{ data.emergencyType }}</td>
+                <td>{{ data.emergencyDescription }}</td>
+                <td>{{ data.emergencyLocation }}</td>
+                <td>{{ data.status }}</td>
+                <td>
+                    <form action="/initiate_action" method="post">
+                        <input type="hidden" name="id" value="{{ data._id }}">
+                        <button type="submit">Initiate Action</button>
+                    </form>
+                    <form action="/mark_resolved" method="post">
+                        <input type="hidden" name="id" value="{{ data._id }}">
+                        <button type="submit">Mark as Resolved</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <h2>Section 3: Case Resolved</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>User Name</th>
+                <th>Emergency Type</th>
+                <th>Emergency Description</th>
+                <th>Emergency Location</th>
+                <th>Status</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for data in section3_data %}
+            <tr>
+                <td>{{ data.username }}</td>
+                <td>{{ data.emergencyType }}</td>
+                <td>{{ data.emergencyDescription }}</td>
+                <td>{{ data.emergencyLocation }}</td>
+                <td>{{ data.status }}</td>
+                <td>
+                    <form action="/initiate_action" method="post">
+                        <input type="hidden" name="id" value="{{ data._id }}">
+                        <button type="submit">Initiate Action</button>
+                    </form>
+                    <form action="/mark_resolved" method="post">
+                        <input type="hidden" name="id" value="{{ data._id }}">
+                        <button type="submit">Mark as Resolved</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <!-- Sections 2 and 3 will follow a similar structure -->
+
+</body>
+
+<style>
+    /* Global styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-image: url(https://www.shutterstock.com/image-vector/map-mobile-app-planning-travel-600nw-2281719087.jpg);
+}
+
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+h1 {
+    text-align: center;
+}
+
+/* Form styles */
+#agencyForm {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+#agencyNameInput {
+    width: 300px;
+    padding: 10px;
+    font-size: 16px;
+    margin-right: 10px;
+}
+
+button[type="submit"] {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+button[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+/* Table styles */
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+/* Button styles */
+table button {
+    padding: 8px 16px;
+    font-size: 14px;
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+table button:hover {
+    background-color: #218838;
+}
+
+/* Card styles */
+.card {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0);
+}
+
+.card h2 {
+    margin-top: 0;
+}
+
+.card p {
+    margin-bottom: 0;
+}
+
+h1,h2{
+    color: white;
+}
+
+</style>
+
+
+</html>

@@ -160,3 +160,16 @@ body .container .card .box .content a:hover {
 
 }
 
+/* Button styles */
+button[type="submit"] {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #007bff; /* Blue color */
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+button[type="submit"]:hover {
+  background-color: #0056b3; /* Darker shade of blue on hover */
+}

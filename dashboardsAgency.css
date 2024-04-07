@@ -71,17 +71,7 @@ body .container .card {
   transition: 0.5s;
 }
 
-body .container .card:nth-child(1) .box .content a {
-  background: #2196f3;
-}
 
-body .container .card:nth-child(2) .box .content a {
-  background: #e91e63;
-}
-
-body .container .card:nth-child(3) .box .content a {
-  background: #23c186;
-}
 
 body .container .card .box {
   position: absolute;

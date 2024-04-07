@@ -51,6 +51,7 @@
         href="https://cdn-geoweb.s3.amazonaws.com/esri-leaflet-geocoder/0.0.1-beta.5/esri-leaflet-geocoder.css">
         
     <script>
+         var markers = [];
         // Initialize the map
         const map = L.map('map')
 
@@ -66,18 +67,20 @@
 
         // Set the view of the map
         // with the latitude, longitude and the zoom value
-        map.setView([48.8584, 2.2945], 16);
+      // map.setView([48.8584, 2.2945], 13);
 
         // Set the map view to the user's location
         // Uncomment below to set map according to user location
-        map.locate({ setView: true, maxZoom: 16 });
+      // map.locate({ setView: true, maxZoom: 16 });
 
-        var marker;
+        var myMarker;
         navigator.geolocation.getCurrentPosition(function (position) {
             console.log(position);
             console.log(position.coords.latitude)
             console.log(position.coords.longitude)
-            marker = L.marker([position.coords.latitude, position.coords.longitude]).addTo(map);
+            myMarker = L.marker([position.coords.latitude, position.coords.longitude]);
+            myMarker.addTo(map);
+            markers.push(myMarker);
         });
 
         function onLocationError(e) {
@@ -98,7 +101,7 @@
 //     posMarker(e.geocode.center);
 //     objMap.panTo(e.geocode.center);
 // } )
-L.control.scale().addTo(map);
+//L.control.scale().addTo(map);
 // var searchControl = L.Control.geocoder({
 //         geocoder: L.Control.Geocoder.nominatim()
 //       }).addTo(map);
@@ -117,6 +120,41 @@ L.control.scale().addTo(map);
 
         // // Bind popup to the marker with a popup
        // results.bindPopup("Eiffel Tower").openPopup();
+
+        // Add markers to the map
+        var coordinates = [
+            // [19.1989,73.1075  ],   
+            [19.2078,73.0942 ],   
+            // [19.12346896,73.522776]    
+        ];
+
+        coordinates.forEach(function(coord) {
+            var marker = L.marker(coord);
+            marker.addTo(map);
+            markers.push(marker);
+        });
+
+        var group = new L.featureGroup(markers);
+        //map.addLayer(group); 
+map.fitBounds(group.getBounds());
+
+
+
+
+
+ // After all markers are added, calculate the bounds and fit the map to those bounds
+ map.whenReady(function() {
+    var group = new L.featureGroup(markers);
+    map.fitBounds(group.getBounds());
+  });
+         // Calculate the bounds of all marker positions
+        // var group = new L.featureGroup(markers);
+        // map.fitBounds(group.getBounds());
+//        console.log("Markers are")
+//         console.log(markers)
+//         var bounds = L.latLngBounds(markers);
+// map.fitBounds(bounds);//works!
+
     </script>
 </body>
 
