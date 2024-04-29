@@ -1,0 +1,64 @@
+address
+: 
+"Fire Brigade, Veer Makrand Marg, Ville Parle East, Andheri, Mumbai Suburban, Maharashtra, 400057"
+bounds
+: 
+N {_southWest: j, _northEast: j}
+city
+: 
+"Andheri"
+country
+: 
+"IND"
+latlng
+: 
+j {lat: 19.092614003034598, lng: 72.84407929184104}
+match
+: 
+"PointAddress"
+name
+: 
+""
+region
+: 
+"Maharashtra"
+subregion
+: 
+"Mumbai Suburban"
+text
+: 
+"FIRE BRIGADE, NERUL, NAVI MUMBAI"
+
+
+
+ddress
+: 
+"Nandavan CHS Lane No 6, Nerul, Navi Mumbai, Thane, Maharashtra, 400706"
+bounds
+: 
+N {_southWest: j, _northEast: j}
+city
+: 
+"Navi Mumbai"
+country
+: 
+"IND"
+latlng
+: 
+j {lat: 19.03486, lng: 73.023203}
+match
+: 
+"POI"
+name
+: 
+"Nerul"
+region
+: 
+"Maharashtra"
+subregion
+: 
+"Thane"
+text
+: 
+"FIRE BRIGADE, NERUL, NAVI MUMBAI"
+

@@ -19,13 +19,7 @@ app.secret_key = 'abcdef123456'  # Change this to a random string
 
 CORS(app, supports_credentials=True)
 
-# @app.route('/getUsers',methods=['GET'])
-# def getUsers():
-#     # Perform the database query and directly convert to JSON array
-#     user = agency_collection.find_one({})  # Exclude _id field
-#     session['user_id'] = str(user['_id'])
-#     session.modified = True
-#     return user["username"]
+
     
 
 @app.route('/register', methods=['POST'])

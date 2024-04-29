@@ -28,7 +28,7 @@ function getProfileData() {
       .then((response) => {
        
        // if (!response.ok) {
-          alert("Unable to fetch profile",response);       
+             
       //  } else{
           alert("Profile fetched successfully",response);
          // console.log("data->",response.json())
